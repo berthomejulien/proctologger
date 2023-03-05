@@ -8,8 +8,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" />
-  <img src="https://img.shields.io/github/languages/code-size/berthomejulien/Proctologger.svg" alt="GitHub code size in bytes" />
-  <img src="https://img.shields.io/github/stars/berthomejulien/Proctologger?style=social.svg" alt="GitHub Repo stars" />
+  <img src="https://img.shields.io/github/languages/code-size/berthomejulien/proctologger.svg" alt="GitHub code size in bytes" />
+  <img src="https://img.shields.io/github/stars/berthomejulien/proctologger?style=social.svg" alt="GitHub Repo stars" />
   <a href="https://www.buymeacoffee.com/berthomejulien" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-donate-orange.svg" alt="Buy Me A Coffee"></a>
 </p>
 
