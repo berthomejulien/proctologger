@@ -4,6 +4,6 @@
 
 * Initial release
 
-## 1.0.2
+## 1.0.4
 
-* Test
+* Improved code errors for smoother publishing on data packages.
