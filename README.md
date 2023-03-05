@@ -22,8 +22,7 @@ Show some ❤️ and star the repo to support the project
 
 ## Resources
 
-- [Documentation]()
-- [Pub Package]()
+- [Pub Package](https://pub.dev/packages/proctologger)
 - [Github repository](https://github.com/berthomejulien/proctologger)
 
 ## Get Started
