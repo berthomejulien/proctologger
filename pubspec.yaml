@@ -1,7 +1,7 @@
 name: proctologger
 description: Logger for dart and flutter apps
 version: 1.0.0
-homepage: 
+homepage: https://github.com/berthomejulien/proctologger
 
 environment:
   sdk: '>=3.0.0-272.0.dev <4.0.0'

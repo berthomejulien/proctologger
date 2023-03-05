@@ -22,9 +22,9 @@ Show some ❤️ and star the repo to support the project
 
 ## Resources
 
-- Documentation
-- Pub Package
-- Github repository
+- [Documentation]()
+- [Pub Package]()
+- [Github repository](https://github.com/berthomejulien/proctologger)
 
 ## Get Started
 
@@ -34,7 +34,7 @@ Follow these steps:
 
 ```yaml
 dependencies:
-  proctologger: XXXX
+  proctologger: ^1.0.0
 ```
 
 ### Easy to use
