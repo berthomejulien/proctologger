@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'package:proctologger/logic/states/state_channel.dart';
 
 import '../../core/constants/constant.dart';
 import '../../domain/entities/entity_log_parameter.dart';
 import '../../logic/states/state_align_text.dart';
 import '../../logic/states/state_ansi_color.dart';
+import '../../logic/states/state_channel.dart';
 import '../../logic/states/state_type.dart';
 import 'class_stack_trace_parser.dart';
 
