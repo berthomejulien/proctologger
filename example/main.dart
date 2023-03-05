@@ -4,8 +4,6 @@ import 'package:proctologger/proctologger.dart';
 var logger = Logger();
 
 void main() {
-  print(
-      'Run with either `dart example/main.dart` or `dart --enable-asserts example/main.dart`.');
   demo();
 }
 
