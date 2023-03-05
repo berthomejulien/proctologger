@@ -1,7 +1,7 @@
 # **Proctologger** - logger for dart and flutter apps
 
 <p align="center">
-  <img src="assets/img/presentation.png"  width="600">
+  <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/presentation.png"  width="600"/>
 </p>
 
 <br>
@@ -52,7 +52,7 @@ logger.info("This is an info message");
 
 <div style="background-color:#192229; width: 100%;">
   <p ="left">
-    <img src="assets/img/full_log.jpg"  width="600">
+    <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/full_log.jpg"  width="600">
   </p>
 </div>
 
@@ -99,19 +99,9 @@ logger.action("This is an action message");
 logger.debug("This is a debug message");
 ```
 
-### Log structure
+### Log customization
 
-Here is the default structure for all log types except `logger.debug()`.
-
-```dart
-╔══════════════════════════════════════════════════════╗
-║ <Type> • <Channel>                            <Date> ║
-╟──────────────────────────────────────────────────────╢
-║ <Tag> - <Message>                                    ║
-║                                       <File>:<Line>  ║
-╚══════════════════════════════════════════════════════╝
-```
-
+Here are the parameters for all logs except `logger.debug()`.
 You can call a `logger.info()` for example, and pass it optional parameters.
 
 ```dart
@@ -131,22 +121,9 @@ That gives you this:
 
 <div style="background-color:#192229; width: 100%;">
   <p align="left">
-    <img src="assets/img/log_info_tag.jpg"  width="600">
+    <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/log_info_tag.jpg"  width="600">
   </p>
 </div>
-
-Here is the structure for `logger.debug()`.
-
-```dart
-╔══════════════════════════════════════════════════════╗
-║ <Type> • <Channel>                            <Date> ║
-╟──────────────────────────────────────────────────────╢
-║ Message: <Message>                                   ║
-║ Type: <VariableType>                                 ║
-║ Value: <VariableValue>                               ║
-║                                       <File>:<Line>  ║
-╚══════════════════════════════════════════════════════╝
-```
 
 When you can call a `logger.debug()` you can pass it optional parameters.\
 You can directly debug ``String``, ``int``, ``num``, ``Map``, ``List``, and ``class`` objects.\
@@ -169,7 +146,7 @@ That gives you this:
 
 <div style="background-color:#192229; width: 100%;">
   <p align="left">
-    <img src="assets/img/log_debug.jpg"  width="600">
+    <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/log_debug.jpg"  width="600">
   </p>
 </div>
 
