@@ -1,15 +1,15 @@
 # **Proctologger** - logger for dart and flutter apps
 
 <p align="center">
-  <img src="assets/img/presentation.png"  width="600">
+  <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/presentation.png"  width="600"/>
 </p>
 
 <br>
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" />
-  <img src="https://img.shields.io/github/languages/code-size/berthomejulien/Proctologger.svg" alt="GitHub code size in bytes" />
-  <img src="https://img.shields.io/github/stars/berthomejulien/Proctologger?style=social.svg" alt="GitHub Repo stars" />
+  <img src="https://img.shields.io/github/languages/code-size/berthomejulien/proctologger.svg" alt="GitHub code size in bytes" />
+  <img src="https://img.shields.io/github/stars/berthomejulien/proctologger?style=social.svg" alt="GitHub Repo stars" />
   <a href="https://www.buymeacoffee.com/berthomejulien" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-donate-orange.svg" alt="Buy Me A Coffee"></a>
 </p>
 
@@ -22,9 +22,8 @@ Show some ❤️ and star the repo to support the project
 
 ## Resources
 
-- Documentation
-- Pub Package
-- Github repository
+- [Pub Package](https://pub.dev/packages/proctologger)
+- [Github repository](https://github.com/berthomejulien/proctologger)
 
 ## Get Started
 
@@ -34,7 +33,7 @@ Follow these steps:
 
 ```yaml
 dependencies:
-  proctologger: XXXX
+  proctologger: ^1.0.0
 ```
 
 ### Easy to use
@@ -53,7 +52,7 @@ logger.info("This is an info message");
 
 <div style="background-color:#192229; width: 100%;">
   <p ="left">
-    <img src="assets/img/full_log.jpg"  width="600">
+    <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/full_log.jpg"  width="600">
   </p>
 </div>
 
@@ -100,19 +99,9 @@ logger.action("This is an action message");
 logger.debug("This is a debug message");
 ```
 
-### Log structure
+### Log customization
 
-Here is the default structure for all log types except `logger.debug()`.
-
-```dart
-╔══════════════════════════════════════════════════════╗
-║ <Type> • <Channel>                            <Date> ║
-╟──────────────────────────────────────────────────────╢
-║ <Tag> - <Message>                                    ║
-║                                       <File>:<Line>  ║
-╚══════════════════════════════════════════════════════╝
-```
-
+Here are the parameters for all logs except `logger.debug()`.
 You can call a `logger.info()` for example, and pass it optional parameters.
 
 ```dart
@@ -132,22 +121,9 @@ That gives you this:
 
 <div style="background-color:#192229; width: 100%;">
   <p align="left">
-    <img src="assets/img/log_info_tag.jpg"  width="600">
+    <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/log_info_tag.jpg"  width="600">
   </p>
 </div>
-
-Here is the structure for `logger.debug()`.
-
-```dart
-╔══════════════════════════════════════════════════════╗
-║ <Type> • <Channel>                            <Date> ║
-╟──────────────────────────────────────────────────────╢
-║ Message: <Message>                                   ║
-║ Type: <VariableType>                                 ║
-║ Value: <VariableValue>                               ║
-║                                       <File>:<Line>  ║
-╚══════════════════════════════════════════════════════╝
-```
 
 When you can call a `logger.debug()` you can pass it optional parameters.\
 You can directly debug ``String``, ``int``, ``num``, ``Map``, ``List``, and ``class`` objects.\
@@ -170,7 +146,7 @@ That gives you this:
 
 <div style="background-color:#192229; width: 100%;">
   <p align="left">
-    <img src="assets/img/log_debug.jpg"  width="600">
+    <img src="https://raw.githubusercontent.com/berthomejulien/proctologger/main/assets/img/log_debug.jpg"  width="600">
   </p>
 </div>
 

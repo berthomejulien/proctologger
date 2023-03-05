@@ -6,12 +6,6 @@ import '../../logic/states/state_channel.dart';
 import '../../logic/states/state_type.dart';
 import 'data/class/class_log_template.dart';
 
-// TODO : gerer si le scope est trop long dans header
-// TODO : Faire le template actions
-// TODO : Faire la documentation en ligne
-// TODO : Reporter dans extension procto'logger
-// TODO: mettre les liens documentation README
-
 class Logger {
   /* -------------------------------------------------------------------------- */
   /*                                  Variables                                 */
