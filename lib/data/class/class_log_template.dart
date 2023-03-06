@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../core/constants/constant.dart';
@@ -130,7 +131,7 @@ class LoggerTemplate {
 
     List<String> lineSplitterObject = _splitObjectInMultiLines(object: object);
     if (lineSplitterObject.length > 1) {
-      log(_lineText(
+      debugPrint(_lineText(
         primaryMessage: "Value: ",
       ));
       for (var i = 0; i < lineSplitterObject.length; i++) {
@@ -288,7 +289,7 @@ class LoggerTemplate {
       "         |___/ |___/            ",
     ];
     for (var line in title) {
-      log(createLine(
+      debugPrint(createLine(
           primaryMessage: line, alignment: LoggerAlignmentState.center));
     }
   }
@@ -299,12 +300,12 @@ class LoggerTemplate {
         object:
             "Welcome to Proctologger, the Flutter logger that will help you dig deep into your code!");
     for (var i = 0; i < lengthSplitterObject.length; i++) {
-      log(createLine(
+      debugPrint(createLine(
           primaryMessage: lengthSplitterObject[i],
           fill: ' ',
           alignment: LoggerAlignmentState.center));
     }
-    log(createLine(
+    debugPrint(createLine(
         primaryMessage: LoggerConstant.kVersion,
         fill: ' ',
         alignment: LoggerAlignmentState.center));
@@ -434,7 +435,7 @@ class LoggerTemplate {
     required LoggerTypeState type,
     LoggerChannelState? channel,
   }) {
-    log(LoggerTemplate(parameters)._lineHeader());
+    debugPrint(LoggerTemplate(parameters)._lineHeader());
 
     String headerMessage = type.name;
     if (channel != null) {
@@ -443,12 +444,12 @@ class LoggerTemplate {
 
     var date = DateTime.now();
     var creationDate = DateFormat(parameters.dateFormat).format(date);
-    log(LoggerTemplate(parameters)._lineText(
+    debugPrint(LoggerTemplate(parameters)._lineText(
         primaryMessage: headerMessage,
         primaryColor: type.color,
         secondaryMessage: creationDate,
         alignment: LoggerAlignmentState.between));
-    log(LoggerTemplate(parameters)._lineSeparator());
+    debugPrint(LoggerTemplate(parameters)._lineSeparator());
   }
 
   /// Private method that prints the footer of a logger box with the file name and line number of the caller.
@@ -459,11 +460,11 @@ class LoggerTemplate {
   /// box footer using [_lineFooter] function.
   void _boxFooter({required StackTrace stack}) {
     StackTraceParser stackTraceParser = StackTraceParser(stack);
-    log(LoggerTemplate(parameters)._lineText(
+    debugPrint(LoggerTemplate(parameters)._lineText(
         primaryMessage:
             "${stackTraceParser.fileName}:${stackTraceParser.lineNumber}",
         alignment: LoggerAlignmentState.right));
-    log(LoggerTemplate(parameters)._lineFooter());
+    debugPrint(LoggerTemplate(parameters)._lineFooter());
   }
 
   /// Prints the list of strings on separate lines using _lineText template.
@@ -486,12 +487,12 @@ class LoggerTemplate {
       {required List<String> textList, String subMessage = ""}) {
     for (var i = 0; i < textList.length; i++) {
       if (i == 0 && subMessage.isNotEmpty) {
-        log(_lineText(
+        debugPrint(_lineText(
             primaryMessage: subMessage,
             secondaryMessage: textList[i],
             secondaryColor: LoggerAnsiColors.white.color));
       } else {
-        log(_lineText(
+        debugPrint(_lineText(
             primaryMessage: textList[i],
             primaryColor: LoggerAnsiColors.white.color));
       }

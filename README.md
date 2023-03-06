@@ -33,7 +33,7 @@ Follow these steps:
 
 ```yaml
 dependencies:
-  proctologger: ^1.0.7
+  proctologger: ^1.0.8
 ```
 
 ### Easy to use

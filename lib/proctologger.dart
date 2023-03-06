@@ -2,6 +2,8 @@ library proctologger;
 
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
+
 import '../../core/utils/util.dart';
 import '../../domain/entities/entity_log_parameter.dart';
 import '../../logic/states/state_channel.dart';
@@ -27,9 +29,9 @@ class Logger {
   void init() {
     if (parameters.showLog == true && parameters.showInitMessage == true) {
       LoggerTemplate(parameters).createInitTitle();
-      log("");
+      debugPrint("");
       LoggerTemplate(parameters).createInitDescription();
-      log("");
+      debugPrint("");
     }
   }
 
