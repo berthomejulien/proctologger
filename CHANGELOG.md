@@ -1,13 +1,5 @@
 # Changelog
 
-## 1.0.0
+## 1.0.6
 
 * Initial release
-
-## 1.0.4
-
-* Improved code errors for smoother publishing on data packages.
-
-## 1.0.5
-
-* Reformat files with error to Dart format
