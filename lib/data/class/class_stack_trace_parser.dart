@@ -1,11 +1,11 @@
-class StackTraceParser{
+class StackTraceParser {
   final StackTrace trace;
   late String function;
   late String path;
   late String fileName;
   late String lineNumber;
 
-  StackTraceParser(this.trace){
+  StackTraceParser(this.trace) {
     _parseTrace();
   }
 

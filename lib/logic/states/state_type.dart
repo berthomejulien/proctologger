@@ -1,12 +1,11 @@
-
 import 'state_ansi_color.dart';
 
 enum LoggerTypeState {
-  info, 
-  warning, 
-  error, 
-  debug, 
-  database, 
+  info,
+  warning,
+  error,
+  debug,
+  database,
   action,
 }
 
@@ -45,5 +44,3 @@ extension LoggerTypeStateUtils on LoggerTypeState {
     }
   }
 }
-
-

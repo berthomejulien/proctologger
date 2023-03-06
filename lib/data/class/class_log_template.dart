@@ -51,30 +51,33 @@ class LoggerTemplate {
   ///
   /// templateBox(type: type, channel: channel, message: message, stack: stack, tags: tags);
   /// ```
-  void templateBox({
-    required LoggerTypeState type,
-    LoggerChannelState? channel,
-    required String message,
-    required StackTrace stack,
-    List<String>? tags
-  }) {
+  void templateBox(
+      {required LoggerTypeState type,
+      LoggerChannelState? channel,
+      required String message,
+      required StackTrace stack,
+      List<String>? tags}) {
     _boxHeader(type: type, channel: channel);
 
     String bodyMessage = "";
 
-    if(tags != null && tags.isNotEmpty){
-      List<String> convertInTagFormat = tags.map((tag) => "[${tag[0].toUpperCase()}${tag.substring(1).toLowerCase()}]").toList();
-      for(var tag in convertInTagFormat){
+    if (tags != null && tags.isNotEmpty) {
+      List<String> convertInTagFormat = tags
+          .map((tag) =>
+              "[${tag[0].toUpperCase()}${tag.substring(1).toLowerCase()}]")
+          .toList();
+      for (var tag in convertInTagFormat) {
         bodyMessage += tag;
       }
       bodyMessage += " - $message";
-    }else{
+    } else {
       bodyMessage = message;
     }
 
-    List<String> lengthSplitterObject = splitObjectIfTooLong(object: bodyMessage);
+    List<String> lengthSplitterObject =
+        splitObjectIfTooLong(object: bodyMessage);
     _templateTextMultiLines(textList: lengthSplitterObject);
-    
+
     _boxFooter(stack: stack);
   }
 
@@ -106,33 +109,38 @@ class LoggerTemplate {
   ///
   /// templateDebug(type: type, channel: channel, message: message, object: object, stack: stack);
   /// ```
-  void templateDebug({
-    required LoggerTypeState type,
-    LoggerChannelState? channel,
-    String? message,
-    required dynamic object,
-    required StackTrace stack
-  }) {
+  void templateDebug(
+      {required LoggerTypeState type,
+      LoggerChannelState? channel,
+      String? message,
+      required dynamic object,
+      required StackTrace stack}) {
     _boxHeader(type: type, channel: channel);
 
-    if(message != null){
-      List<String> lengthSplitterObject = splitObjectIfTooLong(object: message.toString(), subMessage: "Message: ");
-      _templateTextMultiLines(textList: lengthSplitterObject, subMessage: "Message: ");
+    if (message != null) {
+      List<String> lengthSplitterObject = splitObjectIfTooLong(
+          object: message.toString(), subMessage: "Message: ");
+      _templateTextMultiLines(
+          textList: lengthSplitterObject, subMessage: "Message: ");
     }
-    List<String> lengthSplitterObject = splitObjectIfTooLong(object: object.runtimeType.toString(), subMessage: "Type: ");
-    _templateTextMultiLines(textList: lengthSplitterObject, subMessage: "Type: ");
+    List<String> lengthSplitterObject = splitObjectIfTooLong(
+        object: object.runtimeType.toString(), subMessage: "Type: ");
+    _templateTextMultiLines(
+        textList: lengthSplitterObject, subMessage: "Type: ");
 
     List<String> lineSplitterObject = _splitObjectInMultiLines(object: object);
-    if(lineSplitterObject.length > 1){
+    if (lineSplitterObject.length > 1) {
       log(_lineText(
         primaryMessage: "Value: ",
       ));
       for (var i = 0; i < lineSplitterObject.length; i++) {
-        List<String> lengthSplitterObject = splitObjectIfTooLong(object: lineSplitterObject[i]);
+        List<String> lengthSplitterObject =
+            splitObjectIfTooLong(object: lineSplitterObject[i]);
         _templateTextMultiLines(textList: lengthSplitterObject);
       }
-    }else{
-      _templateTextMultiLines(textList: lineSplitterObject, subMessage: "Value: ");
+    } else {
+      _templateTextMultiLines(
+          textList: lineSplitterObject, subMessage: "Value: ");
     }
 
     _boxFooter(stack: stack);
@@ -147,12 +155,11 @@ class LoggerTemplate {
   /// Returns a list of strings, where the first string is the filled space on the left side of the text, the second string
   /// is the filled space in the center, and the third string is the filled space on the right side of the text.
   ///
-  List<String> addFillCaractere({
-    required String primaryText,
-    String fill = ' ',
-    String? secondaryText,
-    LoggerAlignmentState? alignment
-  }) {
+  List<String> addFillCaractere(
+      {required String primaryText,
+      String fill = ' ',
+      String? secondaryText,
+      LoggerAlignmentState? alignment}) {
     secondaryText ??= '';
     alignment ??= LoggerAlignmentState.left;
 
@@ -161,7 +168,8 @@ class LoggerTemplate {
       throw Exception("You must enter a secondary message !");
     }
 
-    final fillCount = parameters.maxLength - primaryText.length - secondaryText.length;
+    final fillCount =
+        parameters.maxLength - primaryText.length - secondaryText.length;
 
     List<String> spaceLeft = [];
     List<String> spaceRight = [];
@@ -174,22 +182,25 @@ class LoggerTemplate {
       if (primaryText.isNotEmpty) {
         spaceLeft = [" "];
       }
-      spaceRight = List.filled(fillCount - spaceLeft.length - spaceCenter.length, fill);
+      spaceRight =
+          List.filled(fillCount - spaceLeft.length - spaceCenter.length, fill);
     } else if (alignment == LoggerAlignmentState.right) {
       if (primaryText.isNotEmpty) {
         spaceRight = [" "];
         spaceCenter = [" "];
       }
-      spaceLeft = List.filled(fillCount - spaceCenter.length - spaceRight.length, fill);
+      spaceLeft =
+          List.filled(fillCount - spaceCenter.length - spaceRight.length, fill);
     } else if (alignment == LoggerAlignmentState.between) {
       spaceLeft = [" "];
       spaceRight = [" "];
-      spaceCenter = List.filled(fillCount - spaceLeft.length - spaceRight.length, fill);
+      spaceCenter =
+          List.filled(fillCount - spaceLeft.length - spaceRight.length, fill);
     }
 
     return [spaceLeft.join(), spaceCenter.join(), spaceRight.join()];
   }
-  
+
   /// Builds a line structure with the specified spaces and text, and optional primary and secondary colors.
   ///
   /// The spaceLeft, spaceCenter, and spaceRight arguments are strings representing the spaces to add to the left, center,
@@ -201,28 +212,27 @@ class LoggerTemplate {
   ///
   /// Returns the concatenated string with the specified spaces and text, and optional primary and secondary colors.
   String lineStructure({
-    required String spaceLeft, 
-    required String spaceCenter, 
+    required String spaceLeft,
+    required String spaceCenter,
     required String spaceRight,
     String primaryText = '',
     String? primaryColor = '',
     String? secondaryText = '',
     String? secondaryColor = '',
-
-  }){
+  }) {
     return spaceLeft +
-      primaryColor! +
-      primaryText +
-      LoggerAnsiColors.reset.color +
-      spaceCenter +
-      secondaryColor! +
-      secondaryText! +
-      LoggerAnsiColors.reset.color +
-      spaceRight;
+        primaryColor! +
+        primaryText +
+        LoggerAnsiColors.reset.color +
+        spaceCenter +
+        secondaryColor! +
+        secondaryText! +
+        LoggerAnsiColors.reset.color +
+        spaceRight;
   }
-  
+
   /// Creates a formatted line with primary and/or secondary messages and colors,
-  /// aligned based on the specified alignment. The line is filled with the specified 
+  /// aligned based on the specified alignment. The line is filled with the specified
   /// character between the messages and the left/right sides of the line.
   ///
   /// Required parameters:
@@ -237,23 +247,21 @@ class LoggerTemplate {
   ///
   /// Returns:
   ///   A formatted string with the specified messages, colors, alignment, and fill.
-  String createLine({
-    required String primaryMessage,
-    String primaryColor = "",
-    String secondaryMessage = "",
-    String secondaryColor = "",
-    LoggerAlignmentState? alignment,
-    String fill = ' '
-  }) {
+  String createLine(
+      {required String primaryMessage,
+      String primaryColor = "",
+      String secondaryMessage = "",
+      String secondaryColor = "",
+      LoggerAlignmentState? alignment,
+      String fill = ' '}) {
     List<String> spaces = addFillCaractere(
-      primaryText: primaryMessage, 
-      fill: fill, 
-      secondaryText: secondaryMessage,
-      alignment: alignment
-    );
+        primaryText: primaryMessage,
+        fill: fill,
+        secondaryText: secondaryMessage,
+        alignment: alignment);
     return lineStructure(
-      spaceLeft: spaces[0], 
-      spaceCenter: spaces[1], 
+      spaceLeft: spaces[0],
+      spaceCenter: spaces[1],
       spaceRight: spaces[2],
       primaryText: primaryMessage,
       primaryColor: primaryColor,
@@ -261,9 +269,9 @@ class LoggerTemplate {
       secondaryColor: secondaryColor,
     );
   }
-  
+
   /// Prints a fancy ASCII art title with centered alignment
-  void createInitTitle(){
+  void createInitTitle() {
     List<String> title = [
       "______               _          ",
       "| ___ \\             | |         ",
@@ -279,18 +287,27 @@ class LoggerTemplate {
       "          __/ | __/ |           ",
       "         |___/ |___/            ",
     ];
-    for (var line in title){
-      log(createLine(primaryMessage: line, alignment: LoggerAlignmentState.center));
+    for (var line in title) {
+      log(createLine(
+          primaryMessage: line, alignment: LoggerAlignmentState.center));
     }
   }
 
   /// Prints the initial description of the logger box with centered alignment.
-  void createInitDescription(){
-    List<String> lengthSplitterObject = splitObjectIfTooLong(object: "Welcome to Proctologger, the Flutter logger that will help you dig deep into your code!");
-      for (var i = 0; i < lengthSplitterObject.length; i++) {
-        log(createLine(primaryMessage: lengthSplitterObject[i], fill: ' ', alignment: LoggerAlignmentState.center));
-      }
-      log(createLine(primaryMessage: LoggerConstant.kVersion, fill: ' ', alignment: LoggerAlignmentState.center));
+  void createInitDescription() {
+    List<String> lengthSplitterObject = splitObjectIfTooLong(
+        object:
+            "Welcome to Proctologger, the Flutter logger that will help you dig deep into your code!");
+    for (var i = 0; i < lengthSplitterObject.length; i++) {
+      log(createLine(
+          primaryMessage: lengthSplitterObject[i],
+          fill: ' ',
+          alignment: LoggerAlignmentState.center));
+    }
+    log(createLine(
+        primaryMessage: LoggerConstant.kVersion,
+        fill: ' ',
+        alignment: LoggerAlignmentState.center));
   }
 
   /* -------------------------------------------------------------------------- */
@@ -311,20 +328,22 @@ class LoggerTemplate {
   /// Returns the header line as a string.
   String _lineHeader() {
     String line = LoggerConstant.kTemplateCornerUpLeft;
-    line += createLine(primaryMessage: '', fill: LoggerConstant.kTemplateBorderMainHorizontal);
+    line += createLine(
+        primaryMessage: '', fill: LoggerConstant.kTemplateBorderMainHorizontal);
     line += LoggerConstant.kTemplateCornerUpRight;
     return line;
   }
 
   /// Returns a separator line using the default separator template.
   ///
-  /// The separator line is built using the `createLine` function with an empty 
+  /// The separator line is built using the `createLine` function with an empty
   /// primary message and the `kTemplateBorderSeparator` fill character.
   ///
   /// Returns a string representing the separator line.
   String _lineSeparator() {
     String line = LoggerConstant.kTemplateBorderSeparatorLeft;
-    line += createLine(primaryMessage: '', fill: LoggerConstant.kTemplateBorderSeparator);
+    line += createLine(
+        primaryMessage: '', fill: LoggerConstant.kTemplateBorderSeparator);
     line += LoggerConstant.kTemplateBorderSeparatorRight;
     return line;
   }
@@ -350,21 +369,19 @@ class LoggerTemplate {
   ///   alignment: LoggerAlignmentState.center
   /// );
   /// ```
-  String _lineText({
-    required String primaryMessage,
-    String primaryColor = "",
-    String secondaryMessage = "",
-    String secondaryColor = "",
-    LoggerAlignmentState? alignment
-  }) {
+  String _lineText(
+      {required String primaryMessage,
+      String primaryColor = "",
+      String secondaryMessage = "",
+      String secondaryColor = "",
+      LoggerAlignmentState? alignment}) {
     String line = LoggerConstant.kTemplateBorderMainVertical;
     line += createLine(
-      primaryMessage: primaryMessage,
-      primaryColor: primaryColor,
-      secondaryMessage: secondaryMessage,
-      secondaryColor: secondaryColor,
-      alignment: alignment
-    );
+        primaryMessage: primaryMessage,
+        primaryColor: primaryColor,
+        secondaryMessage: secondaryMessage,
+        secondaryColor: secondaryColor,
+        alignment: alignment);
     line += LoggerConstant.kTemplateBorderMainVertical;
     return line;
   }
@@ -379,18 +396,19 @@ class LoggerTemplate {
   ///
   /// Example:
   ///
-  /// Logger._lineFooter(); 
+  /// Logger._lineFooter();
   ///
   /// Returns:
   ///
   /// ╚════════════════════════════════════════════════════════════════════════════╝
   String _lineFooter() {
     String line = LoggerConstant.kTemplateCornerDownLeft;
-    line += createLine(primaryMessage: '', fill: LoggerConstant.kTemplateBorderMainHorizontal);
+    line += createLine(
+        primaryMessage: '', fill: LoggerConstant.kTemplateBorderMainHorizontal);
     line += LoggerConstant.kTemplateCornerDownRight;
     return line;
   }
-  
+
   /// Prints a box header with the specified logger type and channel.
   ///
   /// The box header consists of a border made up of the following characters:
@@ -442,7 +460,8 @@ class LoggerTemplate {
   void _boxFooter({required StackTrace stack}) {
     StackTraceParser stackTraceParser = StackTraceParser(stack);
     log(LoggerTemplate(parameters)._lineText(
-        primaryMessage: "${stackTraceParser.fileName}:${stackTraceParser.lineNumber}",
+        primaryMessage:
+            "${stackTraceParser.fileName}:${stackTraceParser.lineNumber}",
         alignment: LoggerAlignmentState.right));
     log(LoggerTemplate(parameters)._lineFooter());
   }
@@ -455,27 +474,26 @@ class LoggerTemplate {
   ///
   /// Examples:
   ///
-  ///  _templateTextMultiLines(textList: ["Hello, world!"]); 
-  ///  _templateTextMultiLines(textList: ["Hello", "World"], subMessage: "Greetings:"); 
+  ///  _templateTextMultiLines(textList: ["Hello, world!"]);
+  ///  _templateTextMultiLines(textList: ["Hello", "World"], subMessage: "Greetings:");
   /// The first example prints the message "Hello, world!" using the default
   /// color. The second example prints the messages "Hello" and "World" on separate
   /// lines, with the sub-message "Greetings:" displayed above the first line of
   /// text.
   ///
   /// Throws an exception if [textList] is null or empty.
-  void _templateTextMultiLines({required List<String> textList, String subMessage = ""}){
+  void _templateTextMultiLines(
+      {required List<String> textList, String subMessage = ""}) {
     for (var i = 0; i < textList.length; i++) {
-      if(i == 0 && subMessage.isNotEmpty){
+      if (i == 0 && subMessage.isNotEmpty) {
         log(_lineText(
-          primaryMessage: subMessage, 
-          secondaryMessage: textList[i], 
-          secondaryColor: LoggerAnsiColors.white.color
-        ));
-      }else{
+            primaryMessage: subMessage,
+            secondaryMessage: textList[i],
+            secondaryColor: LoggerAnsiColors.white.color));
+      } else {
         log(_lineText(
-          primaryMessage: textList[i], 
-          primaryColor: LoggerAnsiColors.white.color
-        ));
+            primaryMessage: textList[i],
+            primaryColor: LoggerAnsiColors.white.color));
       }
     }
   }
@@ -487,7 +505,7 @@ class LoggerTemplate {
   /// of the object.
   ///
   /// The object parameter is the object to split into lines.
-  List<String> _splitObjectInMultiLines({required dynamic object}){
+  List<String> _splitObjectInMultiLines({required dynamic object}) {
     JsonEncoder pEncoder = const JsonEncoder.withIndent("  ");
     String pNewJson = pEncoder.convert(object);
     LineSplitter ls = const LineSplitter();
@@ -498,12 +516,13 @@ class LoggerTemplate {
   /// optionally adding a [subMessage] at the beginning of each line.
   ///
   /// Returns a list of strings, each representing a line of the split message.
-  List<String> splitObjectIfTooLong({required String object, String subMessage = ''}){
+  List<String> splitObjectIfTooLong(
+      {required String object, String subMessage = ''}) {
     List<String> lines = [];
     // Create variable of object and subMessage
     String fullLine = "$subMessage$object";
     // Check if total length is too big and split the message in multi-line
-    while(fullLine.length > parameters.maxLength - 2){
+    while (fullLine.length > parameters.maxLength - 2) {
       int lastSpace = fullLine.lastIndexOf(' ', parameters.maxLength - 2);
       // If the String message is just a big charactere length
       if (lastSpace == -1) {
@@ -511,21 +530,20 @@ class LoggerTemplate {
       }
       lines.add(fullLine.substring(0, lastSpace));
       // Remove the first space on other lines when split
-      if(fullLine.startsWith(" ")){
+      if (fullLine.startsWith(" ")) {
         fullLine = fullLine.substring(lastSpace + 1);
-      }else{
+      } else {
         fullLine = fullLine.substring(lastSpace);
       }
     }
     // Remove the first space on other lines when split
-    if(fullLine.startsWith(" ")){
+    if (fullLine.startsWith(" ")) {
       lines.add(fullLine.substring(1));
-    }else{
+    } else {
       lines.add(fullLine);
     }
     // Remove subMessage
     lines[0] = lines[0].substring(subMessage.length);
     return lines;
   }
-  
 }

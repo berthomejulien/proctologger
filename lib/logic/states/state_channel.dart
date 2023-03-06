@@ -1,4 +1,3 @@
-
 enum LoggerChannelState {
   app,
   security,
@@ -17,5 +16,3 @@ extension LoggerChannelStateUtils on LoggerChannelState {
     }
   }
 }
-
-
