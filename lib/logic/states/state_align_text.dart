@@ -1,9 +1,6 @@
-
-enum LoggerAlignmentState { 
+enum LoggerAlignmentState {
   left,
   right,
   center,
   between,
 }
-
-

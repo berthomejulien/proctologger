@@ -18,14 +18,14 @@ class Logger {
   /* -------------------------------------------------------------------------- */
   Logger({
     this.parameters = const LoggerParameters(),
-  }){
+  }) {
     init();
   }
   /* -------------------------------------------------------------------------- */
   /*                              Public functions                              */
   /* -------------------------------------------------------------------------- */
   void init() {
-    if(parameters.showLog == true && parameters.showInitMessage == true){
+    if (parameters.showLog == true && parameters.showInitMessage == true) {
       LoggerTemplate(parameters).createInitTitle();
       log("");
       LoggerTemplate(parameters).createInitDescription();
@@ -43,18 +43,20 @@ class Logger {
   /// The log message is generated using the [LoggerTemplate] class and includes
   /// the message, optional [channel], and [tags]. The stack trace is also included
   /// in the log message.
-  void info(String message, {LoggerChannelState? channel, List<String> tags = const []}) {
-    if(parameters.showLog == true){
-      if(parameters.filterTypes.contains(LoggerTypeState.info) || parameters.filterTypes.isEmpty){
-        if(LoggerUtil().haveCommonWords(parameters.filterTags, tags) || parameters.filterTags.isEmpty){
+  void info(String message,
+      {LoggerChannelState? channel, List<String> tags = const []}) {
+    if (parameters.showLog == true) {
+      if (parameters.filterTypes.contains(LoggerTypeState.info) ||
+          parameters.filterTypes.isEmpty) {
+        if (LoggerUtil().haveCommonWords(parameters.filterTags, tags) ||
+            parameters.filterTags.isEmpty) {
           StackTrace stackTrace = StackTrace.current;
           LoggerTemplate(parameters).templateBox(
-            type: LoggerTypeState.info,
-            channel: channel, 
-            message: message,
-            stack: stackTrace,
-            tags: tags
-          );
+              type: LoggerTypeState.info,
+              channel: channel,
+              message: message,
+              stack: stackTrace,
+              tags: tags);
         }
       }
     }
@@ -70,18 +72,20 @@ class Logger {
   /// The log message is generated using the [LoggerTemplate] class and includes
   /// the message, optional [channel], and [tags]. The stack trace is also included
   /// in the log message.
-  void warning(String message,{LoggerChannelState? channel, List<String> tags = const []}) {
-    if(parameters.showLog == true){
-      if(parameters.filterTypes.contains(LoggerTypeState.warning) || parameters.filterTypes.isEmpty){
-        if(LoggerUtil().haveCommonWords(parameters.filterTags, tags) || parameters.filterTags.isEmpty){
+  void warning(String message,
+      {LoggerChannelState? channel, List<String> tags = const []}) {
+    if (parameters.showLog == true) {
+      if (parameters.filterTypes.contains(LoggerTypeState.warning) ||
+          parameters.filterTypes.isEmpty) {
+        if (LoggerUtil().haveCommonWords(parameters.filterTags, tags) ||
+            parameters.filterTags.isEmpty) {
           StackTrace stackTrace = StackTrace.current;
           LoggerTemplate(parameters).templateBox(
-            type: LoggerTypeState.warning,
-            channel: channel, 
-            message: message,
-            stack: stackTrace,
-            tags: tags
-          );
+              type: LoggerTypeState.warning,
+              channel: channel,
+              message: message,
+              stack: stackTrace,
+              tags: tags);
         }
       }
     }
@@ -97,18 +101,20 @@ class Logger {
   /// The log message is generated using the [LoggerTemplate] class and includes
   /// the message, optional [channel], and [tags]. The stack trace is also included
   /// in the log message.
-  void error(String message,{LoggerChannelState? channel, List<String> tags = const []}) {
-    if(parameters.showLog == true){
-      if(parameters.filterTypes.contains(LoggerTypeState.error) || parameters.filterTypes.isEmpty){
-        if(LoggerUtil().haveCommonWords(parameters.filterTags, tags) || parameters.filterTags.isEmpty){
+  void error(String message,
+      {LoggerChannelState? channel, List<String> tags = const []}) {
+    if (parameters.showLog == true) {
+      if (parameters.filterTypes.contains(LoggerTypeState.error) ||
+          parameters.filterTypes.isEmpty) {
+        if (LoggerUtil().haveCommonWords(parameters.filterTags, tags) ||
+            parameters.filterTags.isEmpty) {
           StackTrace stackTrace = StackTrace.current;
           LoggerTemplate(parameters).templateBox(
-            type: LoggerTypeState.error,
-            channel: channel, 
-            message: message,
-            stack: stackTrace,
-            tags: tags
-          );
+              type: LoggerTypeState.error,
+              channel: channel,
+              message: message,
+              stack: stackTrace,
+              tags: tags);
         }
       }
     }
@@ -124,18 +130,20 @@ class Logger {
   /// The log message is generated using the [LoggerTemplate] class and includes
   /// the message, optional [channel], and [tags]. The stack trace is also included
   /// in the log message.
-  void database(String message,{LoggerChannelState? channel, List<String> tags = const []}) {
-    if(parameters.showLog == true){
-      if(parameters.filterTypes.contains(LoggerTypeState.database) || parameters.filterTypes.isEmpty){
-        if(LoggerUtil().haveCommonWords(parameters.filterTags, tags) || parameters.filterTags.isEmpty){
+  void database(String message,
+      {LoggerChannelState? channel, List<String> tags = const []}) {
+    if (parameters.showLog == true) {
+      if (parameters.filterTypes.contains(LoggerTypeState.database) ||
+          parameters.filterTypes.isEmpty) {
+        if (LoggerUtil().haveCommonWords(parameters.filterTags, tags) ||
+            parameters.filterTags.isEmpty) {
           StackTrace stackTrace = StackTrace.current;
           LoggerTemplate(parameters).templateBox(
-            type: LoggerTypeState.database,
-            channel: channel, 
-            message: message,
-            stack: stackTrace,
-            tags: tags
-          );
+              type: LoggerTypeState.database,
+              channel: channel,
+              message: message,
+              stack: stackTrace,
+              tags: tags);
         }
       }
     }
@@ -151,24 +159,23 @@ class Logger {
   ///
   /// The log message will include a header with the log type and channel, a timestamp, the description message, and a footer with the source file and line number.
   void debug(
-    dynamic object,{
-    LoggerChannelState? channel, 
+    dynamic object, {
+    LoggerChannelState? channel,
     String? message,
   }) {
-    if(parameters.showLog == true){
-      if(parameters.filterTypes.contains(LoggerTypeState.debug) || parameters.filterTypes.isEmpty){
-        if(
-          (parameters.filterTags.isNotEmpty && parameters.filterTypes.contains(LoggerTypeState.debug))
-          || parameters.filterTags.isEmpty
-          ){
+    if (parameters.showLog == true) {
+      if (parameters.filterTypes.contains(LoggerTypeState.debug) ||
+          parameters.filterTypes.isEmpty) {
+        if ((parameters.filterTags.isNotEmpty &&
+                parameters.filterTypes.contains(LoggerTypeState.debug)) ||
+            parameters.filterTags.isEmpty) {
           StackTrace stackTrace = StackTrace.current;
           LoggerTemplate(parameters).templateDebug(
-            type: LoggerTypeState.debug,
-            channel: channel,
-            message: message,
-            object: object,
-            stack: stackTrace
-          );
+              type: LoggerTypeState.debug,
+              channel: channel,
+              message: message,
+              object: object,
+              stack: stackTrace);
         }
       }
     }
@@ -184,21 +191,22 @@ class Logger {
   /// The log message is generated using the [LoggerTemplate] class and includes
   /// the message, optional [channel], and [tags]. The stack trace is also included
   /// in the log message.
-  void action(String message,{LoggerChannelState? channel, List<String> tags = const []}) {
-    if(parameters.showLog == true){
-      if(parameters.filterTypes.contains(LoggerTypeState.action) || parameters.filterTypes.isEmpty){
-        if(LoggerUtil().haveCommonWords(parameters.filterTags, tags) || parameters.filterTags.isEmpty){
+  void action(String message,
+      {LoggerChannelState? channel, List<String> tags = const []}) {
+    if (parameters.showLog == true) {
+      if (parameters.filterTypes.contains(LoggerTypeState.action) ||
+          parameters.filterTypes.isEmpty) {
+        if (LoggerUtil().haveCommonWords(parameters.filterTags, tags) ||
+            parameters.filterTags.isEmpty) {
           StackTrace stackTrace = StackTrace.current;
           LoggerTemplate(parameters).templateBox(
-            type: LoggerTypeState.action,
-            channel: channel, 
-            message: message,
-            stack: stackTrace,
-            tags: tags
-          );
+              type: LoggerTypeState.action,
+              channel: channel,
+              message: message,
+              stack: stackTrace,
+              tags: tags);
         }
       }
     }
   }
 }
-

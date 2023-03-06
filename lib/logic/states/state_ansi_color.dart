@@ -1,5 +1,4 @@
-
-enum LoggerAnsiColors { 
+enum LoggerAnsiColors {
   reset,
   black,
   white,
@@ -11,10 +10,9 @@ enum LoggerAnsiColors {
   purple
 }
 
-extension LoggerAnsiColorsUtils on LoggerAnsiColors{
-
+extension LoggerAnsiColorsUtils on LoggerAnsiColors {
   String get color {
-    switch(this){
+    switch (this) {
       case LoggerAnsiColors.reset:
         return "\x1B[0m";
       case LoggerAnsiColors.black:
@@ -35,5 +33,4 @@ extension LoggerAnsiColorsUtils on LoggerAnsiColors{
         return "\x1B[35m";
     }
   }
-
 }

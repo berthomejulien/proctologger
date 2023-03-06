@@ -1,7 +1,6 @@
 import '../../logic/states/state_type.dart';
 
-class LoggerParameters{
-
+class LoggerParameters {
   final int maxLength;
   final String dateFormat;
   final bool showLog;
@@ -19,12 +18,11 @@ class LoggerParameters{
   }) : assert(maxLength >= 35);
 
   Map<String, dynamic> toJson() => {
-    "maxLength" : maxLength,
-    "dateFormat" : dateFormat,
-    "showLog" : showLog,
-    "showInitMessage" : showInitMessage,
-    "filterType" : "$filterTypes",
-    "filterTags" : "$filterTags",
-  };
-  
+        "maxLength": maxLength,
+        "dateFormat": dateFormat,
+        "showLog": showLog,
+        "showInitMessage": showInitMessage,
+        "filterType": "$filterTypes",
+        "filterTags": "$filterTags",
+      };
 }
