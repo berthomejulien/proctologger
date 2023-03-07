@@ -1,6 +1,6 @@
 name: proctologger
 description: Easy to use logger for dart and flutter apps which prints beautiful logs.
-version: 1.0.8
+version: 1.1.0
 homepage: https://github.com/berthomejulien/proctologger
 
 environment:
