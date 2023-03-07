@@ -1,7 +1,5 @@
 library proctologger;
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../../core/utils/util.dart';

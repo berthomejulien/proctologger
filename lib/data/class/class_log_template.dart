@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -305,10 +304,6 @@ class LoggerTemplate {
           fill: ' ',
           alignment: LoggerAlignmentState.center));
     }
-    debugPrint(createLine(
-        primaryMessage: LoggerConstant.kVersion,
-        fill: ' ',
-        alignment: LoggerAlignmentState.center));
   }
 
   /* -------------------------------------------------------------------------- */
